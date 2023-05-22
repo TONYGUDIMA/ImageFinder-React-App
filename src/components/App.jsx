@@ -10,7 +10,6 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [data, setData] = useState([]);
   const [q, setQ] = useState('');
-  const [isShowModal, setIsShowModal] = useState(false);
   const [isShowSpinner, setIsShowSpinner] = useState(false);
   const [loadMore, setLoadMore] = useState(false);
 
