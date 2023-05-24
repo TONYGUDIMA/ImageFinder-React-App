@@ -17,8 +17,8 @@ export default function ImageGalleryItem({ src, source }) {
     <>
       <li className={css.imageGalleryItem} onClick={handleOpen}>
         <img src={src} alt="" className={css.imageGalleryItemImage} />
+        {isShowModal && <Modal src={source} handleClose={handleClose} />}
       </li>
-      {isShowModal && <Modal src={source} handleClose={handleClose} />}
     </>
   );
 }

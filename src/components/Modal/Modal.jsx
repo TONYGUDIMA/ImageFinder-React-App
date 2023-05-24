@@ -1,27 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import css from './Modal.module.css';
 
 export default function Modal({ src, handleClose }) {
+  const onKeyPressed = useCallback(
+    event => {
+      if (event.key === 'Escape') {
+        event.stopPropagation();
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
+
   useEffect(() => {
     document.addEventListener('keydown', onKeyPressed);
     return () => {
       document.removeEventListener('keydown', onKeyPressed);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [onKeyPressed]);
 
-  const handleCloseModal = e => {
-    if (e.target.className === css.overlay) {
-      handleClose();
-    }
-  };
-
-  const onKeyPressed = event => {
-    if (event.key === 'Escape') {
-      event.stopPropagation();
-      handleClose();
-    }
-  };
+  const handleCloseModal = useCallback(
+    e => {
+      if (e.target.className === css.overlay) {
+        handleClose();
+      }
+    },
+    [handleClose]
+  );
 
   return (
     <div
